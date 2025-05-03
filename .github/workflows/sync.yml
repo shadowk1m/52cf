@@ -14,6 +14,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Check Out
+      uses: actions/checkout@v4
     - id: latest_release
       name: Fetch Latest Release
       uses: thebritican/fetch-latest-release@v2.0.0
@@ -22,7 +24,7 @@ jobs:
     - name: Clone BPB worker.js
       run: |
         wget -O _worker.js https://github.com/bia-pain-bache/BPB-Worker-Panel/releases/download/${{ steps.latest_release.outputs.tag_name }}/worker.js
-    - name: Commit changes
+    - name: Commit Changes
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         branch: main
