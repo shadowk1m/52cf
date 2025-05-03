@@ -16,7 +16,7 @@ jobs:
     steps:
     - id: latest_release
       name: Fetch Latest Release
-      uses: thebritican/fetch-latest-release@v1
+      uses: thebritican/fetch-latest-release@v2.0.0
       with:
         repo_path: bia-pain-bache/BPB-Worker-Panel
     - name: Clone BPB worker.js
