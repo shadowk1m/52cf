@@ -1,0 +1,31 @@
+name: Sync BPB 
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 1 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - id: latest_release
+      name: Fetch Latest Release
+      uses: thebritican/fetch-latest-release@v1
+      with:
+        repo_path: bia-pain-bache/BPB-Worker-Panel
+    - name: Clone BPB worker.js
+      run: |
+        wget -O _worker.js https://github.com/bia-pain-bache/BPB-Worker-Panel/releases/download/${ steps.latest_release.outputs.tag_name }/worker.js
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        branch: main
+        commit_message: ':arrow_up: update latest bpb panel'
+        commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
+        push_options: '--set-upstream'
