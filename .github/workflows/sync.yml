@@ -21,7 +21,7 @@ jobs:
         repo_path: bia-pain-bache/BPB-Worker-Panel
     - name: Clone BPB worker.js
       run: |
-        wget -O _worker.js https://github.com/bia-pain-bache/BPB-Worker-Panel/releases/download/${ steps.latest_release.outputs.tag_name }/worker.js
+        wget -O _worker.js https://github.com/bia-pain-bache/BPB-Worker-Panel/releases/download/${{ steps.latest_release.outputs.tag_name }}/worker.js
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
